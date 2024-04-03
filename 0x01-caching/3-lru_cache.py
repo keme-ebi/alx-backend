@@ -2,8 +2,8 @@
 """
 LRUCache class that inherits from BaseCaching
 """
-BaseCaching = __import__('base_caching').BaseCaching
 from collections import OrderedDict
+BaseCaching = __import__('base_caching').BaseCaching
 
 
 class LRUCache(BaseCaching):
@@ -33,6 +33,7 @@ class LRUCache(BaseCaching):
             if (num_of_items >= BaseCaching.MAX_ITEMS):
                 if (self.cache_data.get(key)):
                     self.cache_data.update({key: item})
+                    return
                 else:
                     least = next(iter(self.cache_data))
                     self.cache_data.pop(least)
