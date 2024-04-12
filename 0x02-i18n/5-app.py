@@ -6,6 +6,7 @@ from flask_babel import Babel
 app = Flask(__name__)
 babel = Babel(app)
 
+
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
     2: {"name": "Beyonce", "locale": "en", "timezone": "US/Central"},
@@ -42,7 +43,7 @@ def get_user():
         or if login_as was not passed
     """
     id_value = request.args.get('login_as', None)
-    if id_value and int(id_value) in users.keys():
+    if id_value is not None and int(id_value) in users.keys():
         return users.get(int(id_value))
     return None
 
