@@ -2,6 +2,7 @@
 """Flask babel"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
+from typing import Dict, None
 
 app = Flask(__name__)
 babel = Babel(app)
@@ -25,7 +26,7 @@ class Config:
 app.config.from_object(Config)
 
 
-def get_user():
+def get_user() -> Union[Dict, None]:
     """returns a user dictionary or None if the ID cannot be found
         or if login_as was not passed
     """
@@ -40,8 +41,7 @@ def before_request():
     """gets executed before all other functions, it uses get_user to find
         a user if any, and set it as a global on flask.g.user
     """
-    user = get_user()
-    g.user = user
+    g.user = get_user()
 
 
 @babel.localeselector
@@ -58,7 +58,7 @@ def get_locale():
 
 
 @app.route('/', strict_slashes=False)
-def index():
+def index() -> str:
     """render html"""
     return render_template('5-index.html')
 
