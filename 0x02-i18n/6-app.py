@@ -45,7 +45,7 @@ def before_request():
 
 
 @babel.localeselector
-def get_locale():
+def get_locale() -> str:
     """determines the best match with the supported languages"""
     # check if locale parameter is present
     if 'locale' in request.args:
