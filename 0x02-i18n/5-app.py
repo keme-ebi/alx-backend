@@ -25,19 +25,6 @@ class Config:
 app.config.from_object(Config)
 
 
-@babel.localeselector
-def get_locale():
-    """determines the best match with the supported languages"""
-    # check if locale parameter is present
-    if 'locale' in request.args:
-        locale = request.args['locale']
-        # check if the value is supported
-        if locale in app.config['LANGUAGES']:
-            return locale
-    # default
-    return request.accept_languages.best_match(app.config['LANGUAGES'])
-
-
 def get_user():
     """returns a user dictionary or None if the ID cannot be found
         or if login_as was not passed
@@ -54,6 +41,19 @@ def before_request():
         a user if any, and set it as a global on flask.g.user
     """
     g.user = get_user()
+
+
+@babel.localeselector
+def get_locale():
+    """determines the best match with the supported languages"""
+    # check if locale parameter is present
+    if 'locale' in request.args:
+        locale = request.args['locale']
+        # check if the value is supported
+        if locale in app.config['LANGUAGES']:
+            return locale
+    # default
+    return request.accept_languages.best_match(app.config['LANGUAGES'])
 
 
 @app.route('/', strict_slashes=False)
