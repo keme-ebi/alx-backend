@@ -2,7 +2,7 @@
 """Flask babel"""
 from flask import Flask, render_template, request, g
 from flask_babel import Babel
-from typing import Dict, None
+from typing import Dict, Union
 
 app = Flask(__name__)
 babel = Babel(app)
