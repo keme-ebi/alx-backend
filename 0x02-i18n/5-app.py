@@ -40,7 +40,8 @@ def before_request():
     """gets executed before all other functions, it uses get_user to find
         a user if any, and set it as a global on flask.g.user
     """
-    g.user = get_user()
+    user = get_user()
+    g.user = user
 
 
 @babel.localeselector
