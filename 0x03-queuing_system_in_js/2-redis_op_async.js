@@ -21,7 +21,7 @@ async function displaySchoolValue(schoolName) {
     const value = await get(schoolName);
     console.log(`${value}`);
   } catch (err) {
-    console.error(`Error: ${err}`);
+    console.log(`Error: ${err}`);
   }
 }
 
