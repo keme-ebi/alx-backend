@@ -60,6 +60,6 @@ for (const jo of jobs) {
     console.log(`Notification job ${job.id} failed: ${err}`);
   });
   job.on('progress', (progress, data) => {
-    console.log(`Notification job ${job.id} ${progress} complete`);
+    console.log(`Notification job ${job.id} ${progress}% complete`);
   });
 }
